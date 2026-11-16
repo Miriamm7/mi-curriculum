@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#FFFFFF">
+  <title>Currículum | Miriam Montero Mena</title>
+  <style>
+    :root {
+      /* Fondo principal de la página. */
+      --color-fondo: #FFFFFF;
+      /* Superficie cálida para las tarjetas de contacto. */
+      --color-superficie: #F7F6F4;
+      /* Fondo de las etiquetas de fechas. */
+      --color-etiqueta: #EAE8E4;
+      /* Color de títulos y texto principal. */
+      --color-texto: #2C2C2C;
+      /* Color de fechas y texto secundario. */
+      --color-secundario: #737373;
+      /* Color de bordes y separadores sutiles. */
+      --color-linea: #EEEEEE;
+      /* Color de los iconos decorativos de contacto. */
+      --color-icono: #55524E;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--color-fondo);
+      color: var(--color-texto);
+      font-family: Inter, "Helvetica Neue", Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .cv {
+      width: min(1120px, calc(100% - 64px));
+      margin: 0 auto;
+      padding: 72px 0;
+      display: grid;
+      grid-template-columns: minmax(240px, 0.78fr) minmax(0, 1.72fr);
+      gap: clamp(48px, 8vw, 104px);
+    }
+
+    .sidebar {
+      align-self: start;
+    }
+
+    .name {
+      margin: 0 0 28px;
+      font-size: clamp(2.15rem, 4vw, 3.2rem);
+      line-height: 1.08;
+      letter-spacing: -0.055em;
+      font-weight: 750;
+    }
+
+    .portrait {
+      width: min(100%, 290px);
+      aspect-ratio: 1;
+      margin: 0 0 28px;
+      overflow: hidden;
+      border: 1px solid var(--color-linea);
+      border-radius: 50%;
+      background: var(--color-superficie);
+    }
+
+    .portrait img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .sidebar-title {
+      margin: 0 0 24px;
+      font-size: 1rem;
+      line-height: 1.5;
+      font-weight: 700;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .contact-card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 56px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      background: var(--color-superficie);
+      text-decoration: none;
+      overflow-wrap: anywhere;
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    .contact-card:hover,
+    .contact-card:focus-visible {
+      outline: 2px solid var(--color-linea);
+      outline-offset: 2px;
+    }
+
+    .contact-icon {
+      flex: 0 0 20px;
+      width: 20px;
+      height: 20px;
+      color: var(--color-icono);
+    }
+
+    .content section {
+      padding: 0 0 34px;
+      margin: 0 0 34px;
+      border-bottom: 1px solid var(--color-linea);
+    }
+
+    .content section:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .section-title {
+      margin: 0 0 20px;
+      font-size: clamp(1.45rem, 2.4vw, 1.85rem);
+      line-height: 1.25;
+      letter-spacing: -0.035em;
+      font-weight: 700;
+      font-style: italic;
+    }
+
+    #sobre-mi,
+    #experiencia,
+    #formacion,
+    #idiomas {
+      display: inline-block;
+      max-width: 100%;
+      padding: 8px 14px;
+      border: 1px solid var(--color-secundario);
+      border-radius: 6px;
+    }
+
+    .summary {
+      max-width: 68ch;
+      margin: 0;
+      color: #454545;
+    }
+
+    .entry {
+      display: grid;
+      grid-template-columns: minmax(130px, 0.72fr) minmax(0, 1.8fr);
+      gap: 22px;
+      padding: 0 0 24px;
+      margin: 0 0 24px;
+      border-bottom: 1px solid var(--color-linea);
+    }
+
+    .entry:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .date {
+      display: inline-block;
+      margin: 2px 0 7px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: var(--color-etiqueta);
+      color: var(--color-texto);
+      font-size: 0.8rem;
+      font-weight: 600;
+      line-height: 1.5;
+    }
+
+    .entry-detail {
+      color: var(--color-secundario);
+      font-size: 0.9rem;
+    }
+
+    .entry h3 {
+      margin: 0 0 5px;
+      font-size: 1.05rem;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .entry p {
+      margin: 0;
+    }
+
+    .skill-list,
+    .language-list {
+      margin: 0;
+      padding-left: 1.2rem;
+    }
+
+    .skill-list li,
+    .language-list li {
+      padding-left: 3px;
+      margin: 0 0 12px;
+    }
+
+    .skill-list li:last-child,
+    .language-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .skill-list li::marker,
+    .language-list li::marker {
+      color: var(--color-texto);
+    }
+
+    .skill-list strong {
+      font-weight: 700;
+    }
+
+    @media (max-width: 760px) {
+      .cv {
+        width: min(100% - 40px, 620px);
+        padding: 40px 0 52px;
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+
+      .sidebar {
+        display: grid;
+        grid-template-columns: minmax(110px, 0.72fr) minmax(0, 1.28fr);
+        column-gap: 22px;
+        align-items: center;
+      }
+
+      .name {
+        grid-column: 1 / -1;
+        margin-bottom: 22px;
+        font-size: clamp(2.1rem, 9vw, 3rem);
+      }
+
+      .portrait {
+        grid-column: 1;
+        grid-row: 2 / span 2;
+        width: 100%;
+        margin: 0;
+      }
+
+      .sidebar-title {
+        grid-column: 2;
+        align-self: end;
+        margin: 0 0 14px;
+      }
+
+      .contact-list {
+        grid-column: 2;
+        align-self: start;
+        gap: 8px;
+      }
+
+      .contact-card {
+        min-height: 46px;
+        padding: 9px 10px;
+        gap: 8px;
+        font-size: 0.78rem;
+      }
+
+      .contact-icon {
+        flex-basis: 18px;
+        width: 18px;
+        height: 18px;
+      }
+
+      .content section {
+        padding-bottom: 28px;
+        margin-bottom: 28px;
+      }
+    }
+
+    @media (max-width: 440px) {
+      .cv {
+        width: calc(100% - 32px);
+        padding-top: 30px;
+      }
+
+      .sidebar {
+        grid-template-columns: 96px minmax(0, 1fr);
+        column-gap: 16px;
+      }
+
+      .contact-card {
+        overflow-wrap: anywhere;
+        font-size: 0.72rem;
+      }
+
+      .entry {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="cv">
+    <aside class="sidebar">
+      <!-- ===== SECCIÓN:  PERFIL ===== -->
+      <h1 class="name">Miriam Montero Mena</h1>
+      <figure class="portrait">
+        <img src="imagenes/foto.jpg" alt="Fotografía de Miriam Montero Mena">
+      </figure>
+      <p class="sidebar-title">Diseño, maquillaje profesional y Trabajo Social</p>
+      <!-- ===== FIN:PERFIL ===== -->
+
+      <!-- ===== SECCIÓN:  CONTACTO ===== -->
+      <div class="contact-list" aria-label="Datos de contacto">
+        <a class="contact-card" href="mailto:miriammonteromena7@gmail.com">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.7"/>
+            <path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>miriammonteromena7@gmail.com</span>
+        </a>
+        <a class="contact-card" href="tel:671277039">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M7.2 3.5h2.7l1.3 4-1.8 1.7a15 15 0 0 0 5.4 5.4l1.7-1.8 4 1.3v2.7a2 2 0 0 1-2.2 2A16.3 16.3 0 0 1 5.2 5.7a2 2 0 0 1 2-2.2Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>671 277 039</span>
+        </a>
+      </div>
+      <!-- ===== FIN:CONTACTO ===== -->
+    </aside>
+
+    <div class="content">
+      <!-- ===== SECCIÓN:  SOBRE MÍ ===== -->
+      <section aria-labelledby="sobre-mi">
+        <h2 class="section-title" id="sobre-mi">Sobre mí</h2>
+        <p class="summary">Persona responsable, creativa y con gran capacidad de organización, con formación técnica en diseño y maquillaje profesional que actualmente estudia Trabajo Social. Cuenta con experiencia en diseño gráfico, atención al cliente y gestión de equipos. Busca formar parte de un entorno dinámico donde aportar sus habilidades y seguir creciendo profesionalmente.</p>
+      </section>
+      <!-- ===== FIN:SOBRE MÍ ===== -->
+
+      <!-- ===== SECCIÓN:  EXPERIENCIA ===== -->
+      <section aria-labelledby="experiencia">
+        <h2 class="section-title" id="experiencia">Experiencia</h2>
+        <article class="entry">
+          <div>
+            <span class="date">2026</span>
+          </div>
+          <div>
+            <h3>Figurante</h3>
+            <p class="entry-detail">Figurante para serie de Disney +.</p>
+          </div>
+        </article>
+        <article class="entry">
+          <div>
+            <span class="date">2020 - 2024</span>
+          </div>
+          <div>
+            <h3>Gerente de Operaciones y Logística Internacional</h3>
+            <p class="entry-detail">Sector Deportes Electrónicos (Primera División EE. UU.)</p>
+          </div>
+        </article>
+      </section>
+      <!-- ===== FIN:EXPERIENCIA ===== -->
+
+      <!-- ===== SECCIÓN:  FORMACIÓN ===== -->
+      <section aria-labelledby="formacion">
+        <h2 class="section-title" id="formacion">Formación</h2>
+        <article class="entry">
+          <div><span class="date">2023 - Actualidad</span></div>
+          <div>
+            <h3>Trabajo Social</h3>
+            <p class="entry-detail">Universidad de Cádiz</p>
+          </div>
+        </article>
+        <article class="entry">
+          <div><span class="date">2021 - 2023</span></div>
+          <div>
+            <h3>CFGS Diseño y Edición de Publicaciones Impresas y Multimedia</h3>
+            <p class="entry-detail">I.E.S Jorge Juan</p>
+          </div>
+        </article>
+        <article class="entry">
+          <div><span class="date">2018 - 2020</span></div>
+          <div>
+            <h3>CFGS Caracterización y Maquillaje Profesional</h3>
+            <p class="entry-detail">I.E.S San Severiano</p>
+          </div>
+        </article>
+      </section>
+      <!-- ===== FIN:FORMACIÓN ===== -->
+
+      <!-- ===== SECCIÓN:  HABILIDADES ===== -->
+      <section aria-labelledby="habilidades">
+        <h2 class="section-title" id="habilidades">Habilidades</h2>
+        <ul class="skill-list">
+          <li><strong>Gestión de equipos multiculturales y liderazgo:</strong> Coordinación diaria en inglés de plantillas de alto rendimiento y resolución de incidencias.</li>
+          <li><strong>Organización, planificación y logística internacional:</strong> Diseño de cronogramas bajo plazos estrictos, gestión de viajes, alojamientos y tramitación de visados y pasaportes.</li>
+          <li><strong>Negociación y control presupuestario:</strong> Apoyo en captación de fondos, trato con patrocinadores y supervisión de presupuestos operativos.</li>
+          <li><strong>Diseño gráfico y edición multimedia:</strong> Conocimientos técnicos en diseño y edición de publicaciones impresas y digitales.</li>
+          <li><strong>Caracterización y maquillaje profesional:</strong> Técnicas de estética, maquillaje y caracterización escénica o audiovisual.</li>
+          <li><strong>Atención al cliente y habilidades sociales:</strong> Empatía, comunicación efectiva y orientación a las personas (reforzado por los estudios en Trabajo Social y experiencia previa).</li>
+          <li><strong>Competencias personales:</strong> Responsabilidad, creatividad y adaptabilidad a entornos dinámicos.</li>
+        </ul>
+      </section>
+      <!-- ===== FIN:HABILIDADES ===== -->
+
+      <!-- ===== SECCIÓN:  IDIOMAS ===== -->
+      <section aria-labelledby="idiomas">
+        <h2 class="section-title" id="idiomas">Idiomas</h2>
+        <ul class="language-list">
+          <li>Castellano: Nativo</li>
+          <li>Inglés: B2</li>
+          <li>Francés: A2</li>
+          <li>Coreano: A1</li>
+        </ul>
+      </section>
+      <!-- ===== FIN:IDIOMAS ===== -->
+    </div>
+  </main>
+</body>
+</html>
